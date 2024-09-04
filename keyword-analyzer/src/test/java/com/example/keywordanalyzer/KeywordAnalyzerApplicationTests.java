@@ -9,5 +9,4 @@ class KeywordAnalyzerApplicationTests {
 	@Test
 	void contextLoads() {
 	}
-
 }

@@ -4,6 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/keyword-analysis.iml" filepath="$PROJECT_DIR$/.idea/keyword-analysis.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/keyword-analyzer.iml" filepath="$PROJECT_DIR$/.idea/modules/keyword-analyzer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/keyword-analyzer.main.iml" filepath="$PROJECT_DIR$/.idea/modules/keyword-analyzer.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/keyword-analyzer.test.iml" filepath="$PROJECT_DIR$/.idea/modules/keyword-analyzer.test.iml" />
     </modules>
   </component>
 </project>
