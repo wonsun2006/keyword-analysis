@@ -114,43 +114,30 @@ CREATE TABLE `word_ranks`
 
 ### 3. 사용자 생성 및 권한 부여
 
-데이터베이스에 접속할 사용자를 생성하고, 적절한 권한을 부여합니다:
+데이터베이스에 접속할 사용자를 생성하고, 적절한 권한을 부여합니다.
 
 ```mysql
-CREATE USER 'root'@'localhost' IDENTIFIED BY 'root';
-GRANT ALL PRIVILEGES ON keyword_analysis.* TO 'root'@'localhost';
+CREATE USER '유저이름'@'localhost' IDENTIFIED BY 'root';
+GRANT ALL PRIVILEGES ON keyword_analysis.* TO '유저이름'@'localhost';
 FLUSH PRIVILEGES;
 ```
 
 ### 4. JDBC 연결 설정
 
-src/main/resources/application.properties 파일에서 데이터베이스 연결 설정을 수정합니다:
+src/main/resources/application.properties 파일에서 데이터베이스 연결 설정을 수정합니다.
 
 ```properties
 # MySQL 접속 정보
-# ./src/main/resources/application-secret.properties
+# ./src/main/resources/application-prod.properties
 DB_URL=jdbc:mysql://localhost:3306/keyword_analysis
-DB_USERNAME=root
-DB_PASSWORD=root
+DB_USERNAME=유저이름
+DB_PASSWORD=비밀번호
 ```
 
 ```properties
 # MySQL 접속 정보
 # ./src/main/resources/application-test.properties
 DB_URL=jdbc:mysql://localhost:3306/keyword_analysis_test
-DB_USERNAME=root
-DB_PASSWORD=root
-```
-
-## 환경변수 설정
-
-### application-secret.properties
-
-> ```/src/main/resources/application-secret.properties``` 파일을 생성하고 아래 내용을 추가합니다.
-
-```properties
-# MySQL 접속 정보
-DB_URL=jdbc:mysql://localhost:3306/keyword_analysis
-DB_USERNAME=root
-DB_PASSWORD=root
+DB_USERNAME=유저이름
+DB_PASSWORD=비밀번호
 ```
