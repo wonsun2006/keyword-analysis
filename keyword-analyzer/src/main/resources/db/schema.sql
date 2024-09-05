@@ -1,4 +1,4 @@
-CREATE TABLE `posts`
+CREATE TABLE `post`
 (
     `post_id`       BIGINT   NOT NULL PRIMARY KEY AUTO_INCREMENT,
     `content`       TEXT     NOT NULL,
@@ -7,7 +7,7 @@ CREATE TABLE `posts`
     `api_id`        BIGINT   NOT NULL
 );
 
-CREATE TABLE `collections`
+CREATE TABLE `word_collection`
 (
     `collection_id`   BIGINT   NOT NULL PRIMARY KEY AUTO_INCREMENT,
     `collect_status`  INT      NOT NULL DEFAULT 0,
@@ -18,7 +18,7 @@ CREATE TABLE `collections`
     `message`         VARCHAR(255) NULL
 );
 
-CREATE TABLE `term_counts`
+CREATE TABLE `term_count`
 (
     `tc_id`      BIGINT       NOT NULL PRIMARY KEY AUTO_INCREMENT,
     `term`       VARCHAR(255) NOT NULL,
@@ -26,7 +26,7 @@ CREATE TABLE `term_counts`
     `post_id`    BIGINT       NOT NULL
 );
 
-CREATE TABLE `document_counts`
+CREATE TABLE `document_count`
 (
     `dc_id`         BIGINT       NOT NULL PRIMARY KEY AUTO_INCREMENT,
     `term`          VARCHAR(255) NOT NULL,
@@ -34,7 +34,7 @@ CREATE TABLE `document_counts`
     `collection_id` BIGINT       NOT NULL
 );
 
-CREATE TABLE `tf_idf_results`
+CREATE TABLE `tf_idf_result`
 (
     `tfidf_id`    BIGINT       NOT NULL PRIMARY KEY AUTO_INCREMENT,
     `term`        VARCHAR(255) NOT NULL,
@@ -44,7 +44,7 @@ CREATE TABLE `tf_idf_results`
     `post_id`     BIGINT       NOT NULL
 );
 
-CREATE TABLE `term_ranks`
+CREATE TABLE `term_rank`
 (
     `rank_id`       BIGINT       NOT NULL PRIMARY KEY AUTO_INCREMENT,
     `term`          VARCHAR(255) NOT NULL,

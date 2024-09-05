@@ -52,61 +52,9 @@ CREATE DATABASE keyword_analysis;
 
 > ./src/main/resources/schema.sql 파일을 참고하여 테이블을 생성합니다.
 
+[shema.sql](https://github.com/wonsun2006/keyword-analysis/blob/master/keyword-analyzer/src/main/resources/db/schema.sql)
+
 ```mysql
-CREATE TABLE `posts`
-(
-    `post_id`       BIGINT   NOT NULL PRIMARY KEY,
-    `content`       TEXT     NOT NULL,
-    `created_at`    DATETIME NOT NULL,
-    `collection_id` BIGINT   NOT NULL,
-    `api_id`        BIGINT   NOT NULL
-);
-
-CREATE TABLE `collections`
-(
-    `collection_id`   BIGINT       NOT NULL PRIMARY KEY,
-    `collect_status`  INT          NOT NULL DEFAULT 0,
-    `analysis_status` INT          NOT NULL DEFAULT 0,
-    `start_time`      DATETIME     NOT NULL,
-    `end_time`        DATETIME     NOT NULL,
-    `total_doc_count` INT          NOT NULL,
-    `message`         VARCHAR(255) NULL
-);
-
-CREATE TABLE `term_counts`
-(
-    `tc_id`      BIGINT       NOT NULL PRIMARY KEY,
-    `term`       VARCHAR(255) NOT NULL,
-    `term_count` INT          NOT NULL,
-    `post_id`    BIGINT       NOT NULL
-);
-
-CREATE TABLE `document_counts`
-(
-    `dc_id`         BIGINT       NOT NULL PRIMARY KEY,
-    `term`          VARCHAR(255) NOT NULL,
-    `doc_count`     INT          NOT NULL,
-    `collection_id` BIGINT       NOT NULL
-);
-
-CREATE TABLE `tf_idf_results`
-(
-    `tfidf_id`    BIGINT       NOT NULL PRIMARY KEY,
-    `term`        VARCHAR(255) NOT NULL,
-    `tf_value`    FLOAT        NOT NULL,
-    `idf_value`   FLOAT        NOT NULL,
-    `tfidf_value` FLOAT        NOT NULL,
-    `post_id`     BIGINT       NOT NULL
-);
-
-CREATE TABLE `word_ranks`
-(
-    `rank_id`       BIGINT       NOT NULL PRIMARY KEY,
-    `term`          VARCHAR(255) NOT NULL,
-    `rank_value`    INT          NOT NULL,
-    `collection_id` BIGINT       NOT NULL
-);
-```
 
 - 테스트 코드에서 테스트 DB를 사용하려면, 같은 내용으로 DB을 생성합니다.
 
