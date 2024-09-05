@@ -22,9 +22,14 @@ keyword-analyzer/
 │   └── test/
 │       ├── java/
 │       │   └── com/example/keyword-analyzer/
-│       │       ├── controller/
-│       │       ├── service/
-│       │       ├── repository/
+│       │       ├── config/                   # 환경 및 설정 관련 테스트
+│       │       ├── controller/               # 컨트롤러 레이어 테스트
+│       │       ├── repository/               # 데이터베이스 레이어(JPA/MyBatis) 테스트
+│       │       ├── service/                  # 서비스 레이어 테스트
+│       │       ├── integration/              # 통합 테스트
+│       │       ├── unit/                     # 단위 테스트
+│       │       ├── utils/                    # 유틸리티 클래스 테스트
+│       │       ├── learning/
 │       │       └── KeywordAnalyzerApplicationTests.java
 │       └── resources/
 ├── build.gradle
