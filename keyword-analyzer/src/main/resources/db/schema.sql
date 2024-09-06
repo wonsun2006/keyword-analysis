@@ -9,29 +9,29 @@ CREATE TABLE `post`
 
 CREATE TABLE `word_collection`
 (
-    `collection_id`   BIGINT   NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    `collect_status`  INT      NOT NULL DEFAULT 0,
-    `analysis_status` INT      NOT NULL DEFAULT 0,
-    `start_time`      DATETIME NOT NULL,
-    `end_time`        DATETIME NULL,
-    `total_doc_count` INT      NOT NULL,
+    `collection_id`   BIGINT       NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    `collect_status`  INT          NOT NULL DEFAULT 0,
+    `analysis_status` INT          NOT NULL DEFAULT 0,
+    `start_time`      DATETIME     NOT NULL,
+    `end_time`        DATETIME     NULL,
+    `total_doc_count` INT          NOT NULL,
     `message`         VARCHAR(255) NULL
 );
 
 CREATE TABLE `term_count`
 (
-    `tc_id`      BIGINT       NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    `term`       VARCHAR(255) NOT NULL,
-    `term_count` INT          NOT NULL,
-    `post_id`    BIGINT       NOT NULL
+    `term_count_id` BIGINT       NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    `term`          VARCHAR(255) NOT NULL,
+    `term_count`    INT          NOT NULL,
+    `post_id`       BIGINT       NOT NULL
 );
 
 CREATE TABLE `document_count`
 (
-    `dc_id`         BIGINT       NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    `term`          VARCHAR(255) NOT NULL,
-    `doc_count`     INT          NOT NULL,
-    `collection_id` BIGINT       NOT NULL
+    `document_count_id` BIGINT       NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    `term`              VARCHAR(255) NOT NULL,
+    `doc_count`         INT          NOT NULL,
+    `collection_id`     BIGINT       NOT NULL
 );
 
 CREATE TABLE `tf_idf_result`
