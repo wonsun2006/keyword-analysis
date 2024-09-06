@@ -54,8 +54,6 @@ CREATE DATABASE keyword_analysis;
 
 [shema.sql](https://github.com/wonsun2006/keyword-analysis/blob/master/keyword-analyzer/src/main/resources/db/schema.sql)
 
-```mysql
-
 - 테스트 코드에서 테스트 DB를 사용하려면, 같은 내용으로 DB을 생성합니다.
 
   테스트 DB 이름: keyword_analysis_test (변경 가능하나, 별도 설정 필요)

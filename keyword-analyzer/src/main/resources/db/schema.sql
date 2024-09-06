@@ -13,7 +13,7 @@ CREATE TABLE `word_collection`
     `collect_status`  INT      NOT NULL DEFAULT 0,
     `analysis_status` INT      NOT NULL DEFAULT 0,
     `start_time`      DATETIME NOT NULL,
-    `end_time`        DATETIME NOT NULL,
+    `end_time`        DATETIME NULL,
     `total_doc_count` INT      NOT NULL,
     `message`         VARCHAR(255) NULL
 );
