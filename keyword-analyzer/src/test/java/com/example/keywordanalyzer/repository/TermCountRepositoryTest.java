@@ -2,6 +2,7 @@ package com.example.keywordanalyzer.repository;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -33,6 +34,7 @@ public class TermCountRepositoryTest extends BasicRepositoryTest<TermCount> {
 		assertEquals(expected.getPostId(), actual.getPostId());
 	}
 
+	@Test
 	void updateTermCount() {
 		// Arrange
 		TermCount tempCount = createMockData();
