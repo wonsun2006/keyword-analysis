@@ -20,6 +20,7 @@ public class DocumentCountRepositoryTest extends BasicRepositoryTest<DocumentCou
 		return entity.getId();
 	}
 
+	@Override
 	protected DocumentCount createMockData() {
 		String term = "Lorem";
 		int count = 1;

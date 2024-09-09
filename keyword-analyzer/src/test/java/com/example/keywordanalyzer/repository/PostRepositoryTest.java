@@ -21,6 +21,7 @@ public class PostRepositoryTest extends BasicRepositoryTest<Post> {
 		return entity.getId();
 	}
 
+	@Override
 	protected Post createMockData() {
 		String content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
 		LocalDateTime createdAt = LocalDateTime.of(2024, 1, 1, 0, 0, 0);

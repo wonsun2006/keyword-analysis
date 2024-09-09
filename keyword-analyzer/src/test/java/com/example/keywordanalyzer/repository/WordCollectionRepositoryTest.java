@@ -24,6 +24,7 @@ public class WordCollectionRepositoryTest extends BasicRepositoryTest<WordCollec
 		return entity.getId();
 	}
 
+	@Override
 	protected WordCollection createMockData() {
 		int collectStatus = CollectStatus.NOT_STARTED;
 		int analysisStatus = AnalysisStatus.NOT_STARTED;

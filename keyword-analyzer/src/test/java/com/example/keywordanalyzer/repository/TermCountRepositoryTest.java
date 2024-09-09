@@ -20,6 +20,7 @@ public class TermCountRepositoryTest extends BasicRepositoryTest<TermCount> {
 		return entity.getId();
 	}
 
+	@Override
 	protected TermCount createMockData() {
 		String term = "Lorem";
 		int count = 1;

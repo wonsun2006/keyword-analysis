@@ -19,6 +19,7 @@ public class TfidfResultRepositoryTest extends BasicRepositoryTest<TfidfResult> 
 		return entity.getId();
 	}
 
+	@Override
 	protected TfidfResult createMockData() {
 		String term = "Lorem";
 		double tfidfValue = 0.5;
