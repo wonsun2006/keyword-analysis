@@ -31,16 +31,19 @@ public class TermCountService {
 	public void saveTermCount(Post post) {
 		HashMap<String, Integer> termCountMap = NlpUtil.extractNoun(post.getContent());
 		Long wordCollectionId = post.getCollectionId();
+		Long postId = post.getId();
 
 		if (!wordCollectionRepository.existsById(wordCollectionId)) {
 			throw new NoSuchElementException("WordCollection not found. WordCollection Id : " + wordCollectionId);
 		}
 
 		termCountMap.forEach((term, count) -> {
-			TermCount termCount = new TermCount(term, count, post.getId());
+			TermCount termCount = termCountRepository.findByPostIdAndTerm(postId, term)
+				.orElse(new TermCount(term, 0, postId));
+			termCount.setTermCount(termCount.getTermCount() + count);
 			termCountRepository.save(termCount);
 
-			DocumentCount documentCount = documentCountRepository.findByCollectionId(wordCollectionId)
+			DocumentCount documentCount = documentCountRepository.findByCollectionIdAndTerm(wordCollectionId, term)
 				.orElse(new DocumentCount(term, 0, wordCollectionId));
 			documentCount.setDocumentCount(documentCount.getDocumentCount() + count);
 			documentCountRepository.save(documentCount);

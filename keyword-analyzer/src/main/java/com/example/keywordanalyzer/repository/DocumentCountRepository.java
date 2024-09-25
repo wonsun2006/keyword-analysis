@@ -9,5 +9,5 @@ import com.example.keywordanalyzer.model.entity.DocumentCount;
 
 @Repository
 public interface DocumentCountRepository extends JpaRepository<DocumentCount, Long> {
-	Optional<DocumentCount> findByCollectionId(Long wordCollectionId);
+	Optional<DocumentCount> findByCollectionIdAndTerm(Long wordCollectionId, String term);
 }

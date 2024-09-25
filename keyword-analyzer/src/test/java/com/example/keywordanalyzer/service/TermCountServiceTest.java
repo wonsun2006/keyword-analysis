@@ -3,9 +3,7 @@ package com.example.keywordanalyzer.service;
 import static org.mockito.Mockito.*;
 
 import java.time.LocalDateTime;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -39,19 +37,17 @@ public class TermCountServiceTest {
 	@InjectMocks
 	private TermCountService service;
 
-	private Post post;
-
 	@BeforeEach
 	void setUp() {
 		Mockito.when(wordCollection.getId()).thenReturn(1L);
 		Mockito.when(wordCollectionRepository.existsById(wordCollection.getId())).thenReturn(true);
-		post = new Post("Hello World! This is test post.", LocalDateTime.of(2024, 1, 1, 0, 0, 0),
-			wordCollection.getId(), 1L);
 	}
 
 	@Test
-	void saveTermCountWithPost() {
+	void saveTermCountWithSinglePost() {
 		// Arrange
+		Post post = new Post(1L, "Hello World! This test is test post.", LocalDateTime.of(2024, 1, 1, 0, 0, 0),
+			wordCollection.getId(), 1L);
 
 		// Act
 		service.saveTermCount(post);
@@ -59,12 +55,13 @@ public class TermCountServiceTest {
 		// Assert
 		HashMap<String, Integer> actualCounts = NlpUtil.extractNoun(post.getContent());
 		HashMap<String, Integer> expectedCounts = new HashMap<>();
-		List<String> wordList = Arrays.asList("World", "test", "post");
-		for (String word : wordList) {
-			expectedCounts.put(word, 1);
-		}
+		expectedCounts.put("World", 1);
+		expectedCounts.put("test", 2);
+		expectedCounts.put("post", 1);
+		int totalTermCount = expectedCounts.size();
+
 		TestUtil.assertMapEquals(expectedCounts, actualCounts);
-		verify(termCountRepository, times(wordList.size())).save(any(TermCount.class));
-		verify(documentCountRepository, times(wordList.size())).save(any(DocumentCount.class));
+		verify(termCountRepository, times(totalTermCount)).save(any(TermCount.class));
+		verify(documentCountRepository, times(totalTermCount)).save(any(DocumentCount.class));
 	}
 }
