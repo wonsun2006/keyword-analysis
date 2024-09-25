@@ -141,30 +141,32 @@ TF-IDF(Term Frequency-Inverse Document Frequency) 알고리즘은 문서에서 �
 
 **TF 값**
 
-$
+
+```math 
 tf_t,_d =
 \begin{cases}
 1+\log_{10}count(t,d) & count(t,d)>0,\\
 0
 \end{cases}
-$
+```
+
 
 - count(t,d): 문서 d에서 단어 t가 등장한 횟수
 
 **IDF 값**
 
-$
+```math
 idf_t = \log_{10}(N/N_t)
-$
+```
 
 - N: 전체 문서 개수
 - N_t: 단어 t가 등장한 문서 개수
 
 **TF-IDF 가중치 값**
 
-$
+```math
 w_t,_d = tf_t,_d * idf_t
-$
+```
 
 ### 2. 추상 클래스를 이용한 리팩토링
 
