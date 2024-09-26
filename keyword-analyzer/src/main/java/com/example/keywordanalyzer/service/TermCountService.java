@@ -27,6 +27,20 @@ public class TermCountService {
 		this.wordCollectionRepository = wordCollectionRepository;
 	}
 
+	private void updateTermCount(Long postId, String term, int count) {
+		TermCount termCount = termCountRepository.findByPostIdAndTerm(postId, term)
+			.orElse(new TermCount(term, 0, postId));
+		termCount.setTermCount(termCount.getTermCount() + count);
+		termCountRepository.save(termCount);
+	}
+
+	private void updateDocumentCount(Long wordCollectionId, String term, int count) {
+		DocumentCount documentCount = documentCountRepository.findByCollectionIdAndTerm(wordCollectionId, term)
+			.orElse(new DocumentCount(term, 0, wordCollectionId));
+		documentCount.setDocumentCount(documentCount.getDocumentCount() + count);
+		documentCountRepository.save(documentCount);
+	}
+
 	@Transactional
 	public void saveTermCount(Post post) {
 		HashMap<String, Integer> termCountMap = NlpUtil.extractNoun(post.getContent());
@@ -38,15 +52,9 @@ public class TermCountService {
 		}
 
 		termCountMap.forEach((term, count) -> {
-			TermCount termCount = termCountRepository.findByPostIdAndTerm(postId, term)
-				.orElse(new TermCount(term, 0, postId));
-			termCount.setTermCount(termCount.getTermCount() + count);
-			termCountRepository.save(termCount);
-
-			DocumentCount documentCount = documentCountRepository.findByCollectionIdAndTerm(wordCollectionId, term)
-				.orElse(new DocumentCount(term, 0, wordCollectionId));
-			documentCount.setDocumentCount(documentCount.getDocumentCount() + count);
-			documentCountRepository.save(documentCount);
+			updateTermCount(postId, term, count);
+			updateDocumentCount(wordCollectionId, term, count);
 		});
 	}
+
 }
