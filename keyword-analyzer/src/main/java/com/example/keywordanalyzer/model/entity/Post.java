@@ -32,6 +32,14 @@ public class Post {
 	protected Post() {
 	}
 
+	public Post(Long id, String content, LocalDateTime createdAt, Long collectionId, Long apiId) {
+		this.id = id;
+		this.content = content;
+		this.createdAt = createdAt;
+		this.collectionId = collectionId;
+		this.apiId = apiId;
+	}
+
 	public Post(String content, LocalDateTime createdAt, Long collectionId, Long apiId) {
 		this.content = content;
 		this.createdAt = createdAt;
