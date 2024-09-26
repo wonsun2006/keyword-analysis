@@ -33,9 +33,9 @@ public class DocumentCount {
 	protected DocumentCount() {
 	}
 
-	public DocumentCount(String term, int documentCount, Long postId) {
+	public DocumentCount(String term, int documentCount, Long collectionId) {
 		this.term = term;
 		this.documentCount = documentCount;
-		this.collectionId = postId;
+		this.collectionId = collectionId;
 	}
 }
