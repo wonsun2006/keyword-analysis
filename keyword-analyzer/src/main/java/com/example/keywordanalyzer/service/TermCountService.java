@@ -1,11 +1,11 @@
 package com.example.keywordanalyzer.service;
 
 import java.util.HashMap;
-import java.util.NoSuchElementException;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.example.keywordanalyzer.exception.WordCollectionNotFoundException;
 import com.example.keywordanalyzer.model.entity.DocumentCount;
 import com.example.keywordanalyzer.model.entity.Post;
 import com.example.keywordanalyzer.model.entity.TermCount;
@@ -34,7 +34,7 @@ public class TermCountService {
 		Long postId = post.getId();
 
 		if (!wordCollectionRepository.existsById(wordCollectionId)) {
-			throw new NoSuchElementException("WordCollection not found. WordCollection Id : " + wordCollectionId);
+			throw new WordCollectionNotFoundException(wordCollectionId);
 		}
 
 		termCountMap.forEach((term, count) -> {
