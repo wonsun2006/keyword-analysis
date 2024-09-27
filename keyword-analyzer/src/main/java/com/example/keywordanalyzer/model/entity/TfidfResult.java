@@ -28,16 +28,20 @@ public class TfidfResult {
 	@NotNull
 	@JoinColumn(name = "document_id")
 	private Long documentId;
+	@NotNull
+	@JoinColumn(name = "document_collection_id")
+	private Long documentCollectionId;
 
 	protected TfidfResult() {
 	}
 
-	public TfidfResult(String term, double tfidfValue, double tfValue, double idfValue, Long documentId) {
+	public TfidfResult(String term, double tfidfValue, double tfValue, double idfValue, Long documentId,
+		Long documentCollectionId) {
 		this.term = term;
 		this.tfidfValue = tfidfValue;
 		this.tfValue = tfValue;
 		this.idfValue = idfValue;
 		this.documentId = documentId;
-
+		this.documentCollectionId = documentCollectionId;
 	}
 }

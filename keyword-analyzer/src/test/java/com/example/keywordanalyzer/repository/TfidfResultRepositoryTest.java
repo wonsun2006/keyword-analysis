@@ -21,12 +21,7 @@ public class TfidfResultRepositoryTest extends BasicRepositoryTest<TfidfResult> 
 
 	@Override
 	protected TfidfResult createMockData() {
-		String term = "Lorem";
-		double tfidfValue = 0.5;
-		double tfValue = 0.3;
-		double idfValue = 0.7;
-		Long documentId = 1L;
-		return new TfidfResult(term, tfidfValue, tfValue, idfValue, documentId);
+		return new TfidfResult("Lorem", 0.5, 0.3, 0.7, 1L, 1L);
 	}
 
 	@Override

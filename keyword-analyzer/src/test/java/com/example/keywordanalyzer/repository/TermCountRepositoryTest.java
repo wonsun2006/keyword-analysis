@@ -22,10 +22,7 @@ public class TermCountRepositoryTest extends BasicRepositoryTest<TermCount> {
 
 	@Override
 	protected TermCount createMockData() {
-		String term = "Lorem";
-		int count = 1;
-		Long documentId = 1L;
-		return new TermCount(term, count, documentId);
+		return new TermCount("Lorem", 1, 1L, 1L);
 	}
 
 	@Override
@@ -41,7 +38,7 @@ public class TermCountRepositoryTest extends BasicRepositoryTest<TermCount> {
 		TermCount tempCount = createMockData();
 		TermCount savedTermCount = repository.save(tempCount);
 		int newCount = 2;
-		TermCount newTermCount = new TermCount("Lorem", newCount, 1L);
+		TermCount newTermCount = new TermCount("Lorem", newCount, 1L, 1L);
 
 		// Act
 		savedTermCount.setTermCount(newCount);

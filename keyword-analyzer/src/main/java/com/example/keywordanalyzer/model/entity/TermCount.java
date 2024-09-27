@@ -29,13 +29,17 @@ public class TermCount {
 	@NotNull
 	@JoinColumn(name = "document_id")
 	private Long documentId;
+	@NotNull
+	@JoinColumn(name = "document_collection_id")
+	private Long documentCollectionId;
 
 	protected TermCount() {
 	}
 
-	public TermCount(String term, int termCount, Long documentId) {
+	public TermCount(String term, int termCount, Long documentId, Long documentCollectionId) {
 		this.term = term;
 		this.termCount = termCount;
 		this.documentId = documentId;
+		this.documentCollectionId = documentCollectionId;
 	}
 }

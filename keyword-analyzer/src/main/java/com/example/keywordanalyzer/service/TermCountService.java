@@ -27,9 +27,9 @@ public class TermCountService {
 		this.documentCollectionRepository = documentCollectionRepository;
 	}
 
-	private void updateTermCount(Long documentId, String term, int count) {
+	private void updateTermCount(Long documentId, String term, int count, Long documentCollectionId) {
 		TermCount termCount = termCountRepository.findByDocumentIdAndTerm(documentId, term)
-			.orElse(new TermCount(term, 0, documentId));
+			.orElse(new TermCount(term, 0, documentId, documentCollectionId));
 		termCount.setTermCount(termCount.getTermCount() + count);
 		termCountRepository.save(termCount);
 	}
@@ -53,7 +53,7 @@ public class TermCountService {
 		}
 
 		termCountMap.forEach((term, count) -> {
-			updateTermCount(postId, term, count);
+			updateTermCount(postId, term, count, documentCollectionId);
 			updateDocumentCount(documentCollectionId, term, count);
 		});
 	}
