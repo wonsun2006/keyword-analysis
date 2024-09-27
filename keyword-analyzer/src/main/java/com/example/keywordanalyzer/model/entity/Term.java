@@ -1,6 +1,5 @@
 package com.example.keywordanalyzer.model.entity;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,16 +12,15 @@ import lombok.Getter;
 public class Term {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "term_id")
-	Long id;
+	Long termId;
 	@NotNull
 	String value;
 
 	protected Term() {
 	}
 
-	public Term(Long id, String value) {
-		this.id = id;
+	public Term(Long termId, String value) {
+		this.termId = termId;
 		this.value = value;
 	}
 

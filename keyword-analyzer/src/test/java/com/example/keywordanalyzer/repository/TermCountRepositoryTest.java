@@ -17,7 +17,7 @@ public class TermCountRepositoryTest extends BasicRepositoryTest<TermCount> {
 
 	@Override
 	protected Long getId(TermCount entity) {
-		return entity.getId();
+		return entity.getTermCountId();
 	}
 
 	@Override

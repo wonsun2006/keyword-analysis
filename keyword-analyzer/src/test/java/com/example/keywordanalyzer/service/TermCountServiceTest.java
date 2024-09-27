@@ -44,8 +44,9 @@ public class TermCountServiceTest {
 
 	@BeforeEach
 	void setUp() {
-		Mockito.when(documentCollection.getId()).thenReturn(1L);
-		Mockito.when(documentCollectionRepository.existsById(documentCollection.getId())).thenReturn(true);
+		Mockito.when(documentCollection.getDocumentCollectionId()).thenReturn(1L);
+		Mockito.when(documentCollectionRepository.existsById(documentCollection.getDocumentCollectionId()))
+			.thenReturn(true);
 	}
 
 	@Test
@@ -53,7 +54,7 @@ public class TermCountServiceTest {
 		// Arrange
 		Document document = new Document(1L, "Hello World! This test is test post.",
 			LocalDateTime.of(2024, 1, 1, 0, 0, 0),
-			documentCollection.getId(), 1L);
+			documentCollection.getDocumentCollectionId(), 1L);
 		Mockito.doReturn(Optional.of(new Term(1L, "World"))).when(termRepository).findByValue("World");
 		Mockito.doReturn(Optional.of(new Term(2L, "test"))).when(termRepository).findByValue("test");
 		Mockito.doReturn(Optional.of(new Term(3L, "post"))).when(termRepository).findByValue("post");

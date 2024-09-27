@@ -17,7 +17,7 @@ public class DocumentCountRepositoryTest extends BasicRepositoryTest<DocumentCou
 
 	@Override
 	protected Long getId(DocumentCount entity) {
-		return entity.getId();
+		return entity.getDocumentCountId();
 	}
 
 	@Override

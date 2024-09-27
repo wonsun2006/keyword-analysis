@@ -3,7 +3,6 @@ package com.example.keywordanalyzer.model.entity;
 import java.time.LocalDateTime;
 
 import jakarta.annotation.Nullable;
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,8 +16,7 @@ import lombok.Setter;
 public class DocumentCollection {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "document_collection_id")
-	private Long id;
+	private Long documentCollectionId;
 	@Setter
 	@NotNull
 	private int collectStatus;

@@ -51,11 +51,11 @@ public class TermCountServiceIntegrationTest {
 			AnalysisStatus.COMPLETED,
 			LocalDateTime.of(2024, 9, 27, 6, 40), null, 1, "");
 		documentCollection = documentCollectionRepository.save(documentCollection);
-		Long documentCollectionId = documentCollection.getId();
+		Long documentCollectionId = documentCollection.getDocumentCollectionId();
 		Document document = new Document(1L, "Hello World! This test is post test.",
 			LocalDateTime.of(2024, 1, 1, 0, 0, 0),
 			documentCollectionId, 1L);
-		Long documentId = document.getId();
+		Long documentId = document.getDocumentId();
 
 		// Act
 		service.saveTermCount(document);
@@ -69,7 +69,7 @@ public class TermCountServiceIntegrationTest {
 		for (String term : termCountTuples.keySet()) {
 			Optional<Term> termEntity = termRepository.findByValue(term);
 			assertTrue(termEntity.isPresent());
-			Long termId = termEntity.get().getId();
+			Long termId = termEntity.get().getTermId();
 
 			// TermCount 생성 확인
 			Optional<TermCount> termCountOptional = termCountRepository.findByDocumentIdAndTermId(documentId, termId);

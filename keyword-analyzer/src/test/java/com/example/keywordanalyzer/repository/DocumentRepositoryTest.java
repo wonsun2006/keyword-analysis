@@ -18,7 +18,7 @@ public class DocumentRepositoryTest extends BasicRepositoryTest<Document> {
 
 	@Override
 	protected Long getId(Document entity) {
-		return entity.getId();
+		return entity.getDocumentId();
 	}
 
 	@Override

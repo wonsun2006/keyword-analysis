@@ -15,8 +15,7 @@ import lombok.Getter;
 public class Document {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "document_id")
-	private Long id;
+	private Long documentId;
 	@NotNull
 	@Column(columnDefinition = "TEXT")
 	private String content;
@@ -30,8 +29,8 @@ public class Document {
 	protected Document() {
 	}
 
-	public Document(Long id, String content, LocalDateTime createdAt, Long documentCollectionId, Long apiId) {
-		this.id = id;
+	public Document(Long documentId, String content, LocalDateTime createdAt, Long documentCollectionId, Long apiId) {
+		this.documentId = documentId;
 		this.content = content;
 		this.createdAt = createdAt;
 		this.documentCollectionId = documentCollectionId;

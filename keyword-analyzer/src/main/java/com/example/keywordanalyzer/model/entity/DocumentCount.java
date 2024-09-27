@@ -2,7 +2,6 @@ package com.example.keywordanalyzer.model.entity;
 
 import org.hibernate.annotations.ColumnDefault;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,8 +15,7 @@ import lombok.Setter;
 public class DocumentCount {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "document_count_id")
-	private Long id;
+	private Long documentCountId;
 	@NotNull
 	Long termId;
 	@Setter

@@ -21,7 +21,7 @@ public class DocumentCollectionRepositoryTest extends BasicRepositoryTest<Docume
 
 	@Override
 	protected Long getId(DocumentCollection entity) {
-		return entity.getId();
+		return entity.getDocumentCollectionId();
 	}
 
 	@Override
@@ -69,7 +69,8 @@ public class DocumentCollectionRepositoryTest extends BasicRepositoryTest<Docume
 
 		// Assert
 		assertNotNull(updatedDocumentCollection);
-		assertEquals(savedDocumentCollection.getId(), updatedDocumentCollection.getId());
+		assertEquals(savedDocumentCollection.getDocumentCollectionId(),
+			updatedDocumentCollection.getDocumentCollectionId());
 		assertDataEquals(newCollection, updatedDocumentCollection);
 	}
 }

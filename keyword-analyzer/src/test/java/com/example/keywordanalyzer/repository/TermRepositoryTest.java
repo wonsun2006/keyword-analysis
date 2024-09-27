@@ -16,7 +16,7 @@ public class TermRepositoryTest extends BasicRepositoryTest<Term> {
 
 	@Override
 	protected Long getId(Term entity) {
-		return entity.getId();
+		return entity.getTermId();
 	}
 
 	@Override

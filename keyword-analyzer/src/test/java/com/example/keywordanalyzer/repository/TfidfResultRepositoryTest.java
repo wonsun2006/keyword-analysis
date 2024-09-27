@@ -16,7 +16,7 @@ public class TfidfResultRepositoryTest extends BasicRepositoryTest<TfidfResult> 
 
 	@Override
 	protected Long getId(TfidfResult entity) {
-		return entity.getId();
+		return entity.getTfidfResultId();
 	}
 
 	@Override

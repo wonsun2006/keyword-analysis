@@ -50,7 +50,7 @@ public class TermCountService {
 	public void saveTermCount(Document document) {
 		HashMap<String, Integer> termCountMap = NlpUtil.extractNoun(document.getContent());
 		Long documentCollectionId = document.getDocumentCollectionId();
-		Long documentId = document.getId();
+		Long documentId = document.getDocumentId();
 
 		if (!documentCollectionRepository.existsById(documentCollectionId)) {
 			throw new WordCollectionNotFoundException(documentCollectionId);
@@ -63,7 +63,7 @@ public class TermCountService {
 				return newTerm;
 			});
 
-			Long termId = termEntity.getId();
+			Long termId = termEntity.getTermId();
 
 			updateTermCount(documentId, termId, count, documentCollectionId);
 			updateDocumentCount(documentCollectionId, termId, count);
