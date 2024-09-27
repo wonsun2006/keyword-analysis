@@ -6,10 +6,12 @@ import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.keywordanalyzer.model.entity.Document;
 
 @SpringBootTest
+@Transactional
 public class DocumentRepositoryTest extends BasicRepositoryTest<Document> {
 	@Autowired
 	public DocumentRepositoryTest(DocumentRepository repository) {

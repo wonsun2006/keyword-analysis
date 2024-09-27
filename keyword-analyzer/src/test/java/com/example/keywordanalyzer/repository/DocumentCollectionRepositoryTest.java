@@ -7,12 +7,14 @@ import java.time.LocalDateTime;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.keywordanalyzer.model.constants.AnalysisStatus;
 import com.example.keywordanalyzer.model.constants.CollectStatus;
 import com.example.keywordanalyzer.model.entity.DocumentCollection;
 
 @SpringBootTest
+@Transactional
 public class DocumentCollectionRepositoryTest extends BasicRepositoryTest<DocumentCollection> {
 	@Autowired
 	public DocumentCollectionRepositoryTest(DocumentCollectionRepository repository) {
