@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
@@ -45,7 +46,7 @@ public class TermCountServiceIntegrationTest {
 	}
 
 	@Test
-	void saveTermCountWithSinglePost() {
+	void saveTermCountWithSingleDocument() {
 		// Arrange
 		DocumentCollection documentCollection = new DocumentCollection(CollectStatus.COMPLETED,
 			AnalysisStatus.COMPLETED,
@@ -61,7 +62,7 @@ public class TermCountServiceIntegrationTest {
 		service.saveTermCount(document);
 
 		// Assert
-		HashMap<String, Integer> termCountTuples = new HashMap<>();
+		Map<String, Integer> termCountTuples = new HashMap<>();
 		termCountTuples.put("World", 1);
 		termCountTuples.put("test", 2);
 		termCountTuples.put("post", 1);

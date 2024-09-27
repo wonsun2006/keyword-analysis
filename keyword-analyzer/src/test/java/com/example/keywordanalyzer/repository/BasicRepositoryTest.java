@@ -67,7 +67,7 @@ public abstract class BasicRepositoryTest<T> {
 		repository.deleteById(getId(savedEntity));
 
 		// Assert
-		Optional<T> foundPost = repository.findById(getId(savedEntity));
-		assertFalse(foundPost.isPresent());
+		Optional<T> foundEntity = repository.findById(getId(savedEntity));
+		assertFalse(foundEntity.isPresent());
 	}
 }

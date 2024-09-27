@@ -39,16 +39,18 @@ public class DocumentCollectionRepositoryTest extends BasicRepositoryTest<Docume
 
 	@Override
 	protected void assertDataEquals(DocumentCollection expected, DocumentCollection actual) {
-		assertEquals(expected.getCollectStatus(), actual.getCollectStatus());
-		assertEquals(expected.getAnalysisStatus(), actual.getAnalysisStatus());
-		assertEquals(expected.getStartTime(), actual.getStartTime());
-		assertEquals(expected.getEndTime(), actual.getEndTime());
-		assertEquals(expected.getTotalDocumentCount(), actual.getTotalDocumentCount());
-		assertEquals(expected.getMessage(), actual.getMessage());
+		assertAll(
+			() -> assertEquals(expected.getCollectStatus(), actual.getCollectStatus()),
+			() -> assertEquals(expected.getAnalysisStatus(), actual.getAnalysisStatus()),
+			() -> assertEquals(expected.getStartTime(), actual.getStartTime()),
+			() -> assertEquals(expected.getEndTime(), actual.getEndTime()),
+			() -> assertEquals(expected.getTotalDocumentCount(), actual.getTotalDocumentCount()),
+			() -> assertEquals(expected.getMessage(), actual.getMessage())
+		);
 	}
 
 	@Test
-	void updateWordCollection() {
+	void updateDocumentCollection() {
 		// Arrange
 		DocumentCollection collection = createMockData();
 		DocumentCollection savedDocumentCollection = repository.save(collection);

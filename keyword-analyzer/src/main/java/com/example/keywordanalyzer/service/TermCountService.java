@@ -1,11 +1,11 @@
 package com.example.keywordanalyzer.service;
 
-import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.keywordanalyzer.exception.WordCollectionNotFoundException;
+import com.example.keywordanalyzer.exception.DocumentCollectionNotFoundException;
 import com.example.keywordanalyzer.model.entity.Document;
 import com.example.keywordanalyzer.model.entity.DocumentCount;
 import com.example.keywordanalyzer.model.entity.Term;
@@ -46,23 +46,26 @@ public class TermCountService {
 		documentCountRepository.save(documentCount);
 	}
 
+	private Term getOrCreateTermEntity(String term) {
+		return termRepository.findByValue(term).orElseGet(() -> {
+			Term newTermEntity = new Term(term);
+			termRepository.save(newTermEntity);
+			return newTermEntity;
+		});
+	}
+
 	@Transactional
 	public void saveTermCount(Document document) {
-		HashMap<String, Integer> termCountMap = NlpUtil.extractNoun(document.getContent());
+		Map<String, Integer> termCountMap = NlpUtil.extractNoun(document.getContent());
 		Long documentCollectionId = document.getDocumentCollectionId();
 		Long documentId = document.getDocumentId();
 
 		if (!documentCollectionRepository.existsById(documentCollectionId)) {
-			throw new WordCollectionNotFoundException(documentCollectionId);
+			throw new DocumentCollectionNotFoundException(documentCollectionId);
 		}
 
 		termCountMap.forEach((term, count) -> {
-			Term termEntity = termRepository.findByValue(term).orElseGet(() -> {
-				Term newTerm = new Term(term);
-				termRepository.save(newTerm);
-				return newTerm;
-			});
-
+			Term termEntity = getOrCreateTermEntity(term);
 			Long termId = termEntity.getTermId();
 
 			updateTermCount(documentId, termId, count, documentCollectionId);

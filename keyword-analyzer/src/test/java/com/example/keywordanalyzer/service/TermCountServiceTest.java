@@ -4,6 +4,7 @@ import static org.mockito.Mockito.*;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -50,7 +51,7 @@ public class TermCountServiceTest {
 	}
 
 	@Test
-	void saveTermCountWithSinglePost() {
+	void saveTermCountWithSingleDocument() {
 		// Arrange
 		Document document = new Document(1L, "Hello World! This test is test post.",
 			LocalDateTime.of(2024, 1, 1, 0, 0, 0),
@@ -63,8 +64,8 @@ public class TermCountServiceTest {
 		service.saveTermCount(document);
 
 		// Assert
-		HashMap<String, Integer> actualCounts = NlpUtil.extractNoun(document.getContent());
-		HashMap<String, Integer> expectedCounts = new HashMap<>();
+		Map<String, Integer> actualCounts = NlpUtil.extractNoun(document.getContent());
+		Map<String, Integer> expectedCounts = new HashMap<>();
 		expectedCounts.put("World", 1);
 		expectedCounts.put("test", 2);
 		expectedCounts.put("post", 1);
