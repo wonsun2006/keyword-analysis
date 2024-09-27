@@ -4,10 +4,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.keywordanalyzer.model.entity.TermRank;
 
 @SpringBootTest
+@Transactional
 public class TermRankRepositoryTest extends BasicRepositoryTest<TermRank> {
 	@Autowired
 	public TermRankRepositoryTest(TermRankRepository repository) {
@@ -16,21 +18,18 @@ public class TermRankRepositoryTest extends BasicRepositoryTest<TermRank> {
 
 	@Override
 	protected Long getId(TermRank entity) {
-		return entity.getId();
+		return entity.getTermRankId();
 	}
 
 	@Override
 	protected TermRank createMockData() {
-		String term = "Lorem";
-		int rankValue = 1;
-		Long collectionId = 1L;
-		return new TermRank(term, rankValue, collectionId);
+		return new TermRank(1L, 1, 1L);
 	}
 
 	@Override
 	protected void assertDataEquals(TermRank expected, TermRank actual) {
-		assertEquals(expected.getTerm(), actual.getTerm());
+		assertEquals(expected.getTermId(), actual.getTermId());
 		assertEquals(expected.getRankValue(), actual.getRankValue());
-		assertEquals(expected.getCollectionId(), actual.getCollectionId());
+		assertEquals(expected.getDocumentCollectionId(), actual.getDocumentCollectionId());
 	}
 }

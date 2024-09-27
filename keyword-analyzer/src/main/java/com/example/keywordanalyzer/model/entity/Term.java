@@ -9,24 +9,23 @@ import lombok.Getter;
 
 @Getter
 @Entity
-public class TermRank {
+public class Term {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long termRankId;
-	@NotNull
 	Long termId;
 	@NotNull
-	private int rankValue;
-	@NotNull
-	private Long documentCollectionId;
+	String value;
 
-	protected TermRank() {
-
+	protected Term() {
 	}
 
-	public TermRank(Long termId, int rankValue, Long documentCollectionId) {
+	public Term(Long termId, String value) {
 		this.termId = termId;
-		this.rankValue = rankValue;
-		this.documentCollectionId = documentCollectionId;
+		this.value = value;
 	}
+
+	public Term(String value) {
+		this.value = value;
+	}
+
 }

@@ -23,7 +23,7 @@ public class DocumentCountServiceTest {
 	@Test
 	void updateDocumentCountSuccess() {
 		// Arrange
-		DocumentCount documentCount = new DocumentCount("test", 5, 1L);
+		DocumentCount documentCount = new DocumentCount(1L, 5, 1L);
 
 		// Act
 		int count = documentCount.getDocumentCount();
@@ -38,7 +38,7 @@ public class DocumentCountServiceTest {
 	@Test
 	void updateDocumentCountWrongInputFormat() {
 		// Arrange
-		DocumentCount documentCount = new DocumentCount("test", -1, 1L);
+		DocumentCount documentCount = new DocumentCount(1L, -1, 1L);
 
 		// Act, Assert
 		assertThrows(IllegalArgumentException.class,

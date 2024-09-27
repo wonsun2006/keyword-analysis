@@ -7,43 +7,40 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 
 @Getter
 @Entity
-public class Post {
+public class Document {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "post_id")
-	private Long id;
+	private Long documentId;
 	@NotNull
 	@Column(columnDefinition = "TEXT")
 	private String content;
 	@NotNull
 	private LocalDateTime createdAt;
 	@NotNull
-	@JoinColumn(name = "collection_id")
-	private Long collectionId;
+	private Long documentCollectionId;
 	@NotNull
 	private Long apiId;
 
-	protected Post() {
+	protected Document() {
 	}
 
-	public Post(Long id, String content, LocalDateTime createdAt, Long collectionId, Long apiId) {
-		this.id = id;
+	public Document(Long documentId, String content, LocalDateTime createdAt, Long documentCollectionId, Long apiId) {
+		this.documentId = documentId;
 		this.content = content;
 		this.createdAt = createdAt;
-		this.collectionId = collectionId;
+		this.documentCollectionId = documentCollectionId;
 		this.apiId = apiId;
 	}
 
-	public Post(String content, LocalDateTime createdAt, Long collectionId, Long apiId) {
+	public Document(String content, LocalDateTime createdAt, Long documentCollectionId, Long apiId) {
 		this.content = content;
 		this.createdAt = createdAt;
-		this.collectionId = collectionId;
+		this.documentCollectionId = documentCollectionId;
 		this.apiId = apiId;
 	}
 }

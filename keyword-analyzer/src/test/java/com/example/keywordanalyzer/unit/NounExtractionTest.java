@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import org.junit.jupiter.api.Test;
 
@@ -16,8 +17,8 @@ public class NounExtractionTest {
 			+ "that it's ready to be released to the public!";
 	}
 
-	protected HashMap<String, Integer> getMockDataResult() {
-		HashMap<String, Integer> wordCounts = new HashMap<>();
+	protected Map<String, Integer> getMockDataResult() {
+		Map<String, Integer> wordCounts = new HashMap<>();
 		wordCounts.put("summer", 1);
 		wordCounts.put("side", 1);
 		wordCounts.put("project", 1);
@@ -39,8 +40,8 @@ public class NounExtractionTest {
 		String plainText = getMockData();
 
 		// Act
-		HashMap<String, Integer> expected = NlpUtil.extractNoun(plainText);
-		HashMap<String, Integer> actual = getMockDataResult();
+		Map<String, Integer> expected = NlpUtil.extractNoun(plainText);
+		Map<String, Integer> actual = getMockDataResult();
 
 		// Assert
 		assertNotNull(expected);
@@ -56,7 +57,7 @@ public class NounExtractionTest {
 		String emptyText = "";
 
 		// Act
-		HashMap<String, Integer> expected = NlpUtil.extractNoun(emptyText);
+		Map<String, Integer> expected = NlpUtil.extractNoun(emptyText);
 
 		// Assert
 		assertNotNull(expected);

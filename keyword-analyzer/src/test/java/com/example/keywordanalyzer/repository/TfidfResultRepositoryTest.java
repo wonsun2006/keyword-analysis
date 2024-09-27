@@ -4,10 +4,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.keywordanalyzer.model.entity.TfidfResult;
 
 @SpringBootTest
+@Transactional
 public class TfidfResultRepositoryTest extends BasicRepositoryTest<TfidfResult> {
 	@Autowired
 	public TfidfResultRepositoryTest(TfidfResultRepository repository) {
@@ -16,23 +18,18 @@ public class TfidfResultRepositoryTest extends BasicRepositoryTest<TfidfResult> 
 
 	@Override
 	protected Long getId(TfidfResult entity) {
-		return entity.getId();
+		return entity.getTfidfResultId();
 	}
 
 	@Override
 	protected TfidfResult createMockData() {
-		String term = "Lorem";
-		double tfidfValue = 0.5;
-		double tfValue = 0.3;
-		double idfValue = 0.7;
-		Long postId = 1L;
-		return new TfidfResult(term, tfidfValue, tfValue, idfValue, postId);
+		return new TfidfResult(1L, 0.5, 0.3, 0.7, 1L, 1L);
 	}
 
 	@Override
 	protected void assertDataEquals(TfidfResult expected, TfidfResult actual) {
-		assertEquals(expected.getTerm(), actual.getTerm());
+		assertEquals(expected.getTermId(), actual.getTermId());
 		assertEquals(expected.getTfidfValue(), actual.getTfidfValue());
-		assertEquals(expected.getPostId(), actual.getPostId());
+		assertEquals(expected.getDocumentId(), actual.getDocumentId());
 	}
 }
