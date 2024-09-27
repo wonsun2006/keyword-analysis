@@ -7,7 +7,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 
@@ -24,7 +23,6 @@ public class Document {
 	@NotNull
 	private LocalDateTime createdAt;
 	@NotNull
-	@JoinColumn(name = "document_collection_id")
 	private Long documentCollectionId;
 	@NotNull
 	private Long apiId;

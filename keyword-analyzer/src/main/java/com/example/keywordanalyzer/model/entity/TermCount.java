@@ -7,7 +7,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,17 +19,14 @@ public class TermCount {
 	@Column(name = "term_count_id")
 	private Long id;
 	@NotNull
-	@JoinColumn(name = "term_id")
 	Long termId;
 	@Setter
 	@NotNull
 	@ColumnDefault("0")
 	private int termCount;
 	@NotNull
-	@JoinColumn(name = "document_id")
 	private Long documentId;
 	@NotNull
-	@JoinColumn(name = "document_collection_id")
 	private Long documentCollectionId;
 
 	protected TermCount() {
