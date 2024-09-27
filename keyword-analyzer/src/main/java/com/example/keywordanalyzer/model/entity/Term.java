@@ -26,4 +26,8 @@ public class Term {
 		this.value = value;
 	}
 
+	public Term(String value) {
+		this.value = value;
+	}
+
 }

@@ -4,6 +4,7 @@ import static org.mockito.Mockito.*;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
+import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -16,10 +17,12 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import com.example.keywordanalyzer.model.entity.Document;
 import com.example.keywordanalyzer.model.entity.DocumentCollection;
 import com.example.keywordanalyzer.model.entity.DocumentCount;
+import com.example.keywordanalyzer.model.entity.Term;
 import com.example.keywordanalyzer.model.entity.TermCount;
 import com.example.keywordanalyzer.repository.DocumentCollectionRepository;
 import com.example.keywordanalyzer.repository.DocumentCountRepository;
 import com.example.keywordanalyzer.repository.TermCountRepository;
+import com.example.keywordanalyzer.repository.TermRepository;
 import com.example.keywordanalyzer.util.NlpUtil;
 import com.example.keywordanalyzer.util.TestUtil;
 
@@ -33,6 +36,8 @@ public class TermCountServiceTest {
 	private DocumentCollectionRepository documentCollectionRepository;
 	@Mock
 	private DocumentCountRepository documentCountRepository;
+	@Mock
+	private TermRepository termRepository;
 
 	@InjectMocks
 	private TermCountService service;
@@ -49,6 +54,9 @@ public class TermCountServiceTest {
 		Document document = new Document(1L, "Hello World! This test is test post.",
 			LocalDateTime.of(2024, 1, 1, 0, 0, 0),
 			documentCollection.getId(), 1L);
+		Mockito.doReturn(Optional.of(new Term(1L, "World"))).when(termRepository).findByValue("World");
+		Mockito.doReturn(Optional.of(new Term(2L, "test"))).when(termRepository).findByValue("test");
+		Mockito.doReturn(Optional.of(new Term(3L, "post"))).when(termRepository).findByValue("post");
 
 		// Act
 		service.saveTermCount(document);

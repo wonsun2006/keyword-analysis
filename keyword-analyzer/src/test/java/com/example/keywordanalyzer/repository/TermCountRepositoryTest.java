@@ -22,12 +22,12 @@ public class TermCountRepositoryTest extends BasicRepositoryTest<TermCount> {
 
 	@Override
 	protected TermCount createMockData() {
-		return new TermCount("Lorem", 1, 1L, 1L);
+		return new TermCount(1L, 1, 1L, 1L);
 	}
 
 	@Override
 	protected void assertDataEquals(TermCount expected, TermCount actual) {
-		assertEquals(expected.getTerm(), actual.getTerm());
+		assertEquals(expected.getTermId(), actual.getTermId());
 		assertEquals(expected.getTermCount(), actual.getTermCount());
 		assertEquals(expected.getDocumentId(), actual.getDocumentId());
 	}
@@ -38,7 +38,7 @@ public class TermCountRepositoryTest extends BasicRepositoryTest<TermCount> {
 		TermCount tempCount = createMockData();
 		TermCount savedTermCount = repository.save(tempCount);
 		int newCount = 2;
-		TermCount newTermCount = new TermCount("Lorem", newCount, 1L, 1L);
+		TermCount newTermCount = new TermCount(1L, newCount, 1L, 1L);
 
 		// Act
 		savedTermCount.setTermCount(newCount);

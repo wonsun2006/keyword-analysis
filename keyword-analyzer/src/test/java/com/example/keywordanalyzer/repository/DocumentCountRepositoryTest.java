@@ -22,15 +22,12 @@ public class DocumentCountRepositoryTest extends BasicRepositoryTest<DocumentCou
 
 	@Override
 	protected DocumentCount createMockData() {
-		String term = "Lorem";
-		int count = 1;
-		Long postId = 1L;
-		return new DocumentCount(term, count, postId);
+		return new DocumentCount(1L, 1, 1L);
 	}
 
 	@Override
 	protected void assertDataEquals(DocumentCount expected, DocumentCount actual) {
-		assertEquals(expected.getTerm(), actual.getTerm());
+		assertEquals(expected.getTermId(), actual.getTermId());
 		assertEquals(expected.getDocumentCount(), actual.getDocumentCount());
 		assertEquals(expected.getDocumentCollectionId(), actual.getDocumentCollectionId());
 	}
@@ -41,7 +38,7 @@ public class DocumentCountRepositoryTest extends BasicRepositoryTest<DocumentCou
 		DocumentCount tempCount = createMockData();
 		DocumentCount savedDocumentCount = repository.save(tempCount);
 		int newCount = 2;
-		DocumentCount newDocumentCount = new DocumentCount("Lorem", newCount, 1L);
+		DocumentCount newDocumentCount = new DocumentCount(1L, newCount, 1L);
 
 		// Act
 		savedDocumentCount.setDocumentCount(newCount);

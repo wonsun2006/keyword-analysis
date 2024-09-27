@@ -17,8 +17,8 @@ public class TfidfResult {
 	@Column(name = "tfidf_id")
 	private Long id;
 	@NotNull
-	@Column(length = 255)
-	private String term;
+	@JoinColumn(name = "term_id")
+	Long termId;
 	@NotNull
 	private double tfidfValue;
 	@NotNull
@@ -35,9 +35,9 @@ public class TfidfResult {
 	protected TfidfResult() {
 	}
 
-	public TfidfResult(String term, double tfidfValue, double tfValue, double idfValue, Long documentId,
+	public TfidfResult(Long termId, double tfidfValue, double tfValue, double idfValue, Long documentId,
 		Long documentCollectionId) {
-		this.term = term;
+		this.termId = termId;
 		this.tfidfValue = tfidfValue;
 		this.tfValue = tfValue;
 		this.idfValue = idfValue;

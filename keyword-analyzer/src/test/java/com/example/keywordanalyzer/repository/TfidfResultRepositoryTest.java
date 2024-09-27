@@ -21,12 +21,12 @@ public class TfidfResultRepositoryTest extends BasicRepositoryTest<TfidfResult> 
 
 	@Override
 	protected TfidfResult createMockData() {
-		return new TfidfResult("Lorem", 0.5, 0.3, 0.7, 1L, 1L);
+		return new TfidfResult(1L, 0.5, 0.3, 0.7, 1L, 1L);
 	}
 
 	@Override
 	protected void assertDataEquals(TfidfResult expected, TfidfResult actual) {
-		assertEquals(expected.getTerm(), actual.getTerm());
+		assertEquals(expected.getTermId(), actual.getTermId());
 		assertEquals(expected.getTfidfValue(), actual.getTfidfValue());
 		assertEquals(expected.getDocumentId(), actual.getDocumentId());
 	}

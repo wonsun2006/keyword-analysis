@@ -20,8 +20,8 @@ public class TermCount {
 	@Column(name = "term_count_id")
 	private Long id;
 	@NotNull
-	@Column(length = 255)
-	String term;
+	@JoinColumn(name = "term_id")
+	Long termId;
 	@Setter
 	@NotNull
 	@ColumnDefault("0")
@@ -36,8 +36,8 @@ public class TermCount {
 	protected TermCount() {
 	}
 
-	public TermCount(String term, int termCount, Long documentId, Long documentCollectionId) {
-		this.term = term;
+	public TermCount(Long termId, int termCount, Long documentId, Long documentCollectionId) {
+		this.termId = termId;
 		this.termCount = termCount;
 		this.documentId = documentId;
 		this.documentCollectionId = documentCollectionId;

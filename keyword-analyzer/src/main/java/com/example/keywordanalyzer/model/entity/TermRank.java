@@ -17,8 +17,8 @@ public class TermRank {
 	@Column(name = "term_rank_id")
 	private Long id;
 	@NotNull
-	@Column(length = 255)
-	private String term;
+	@JoinColumn(name = "term_id")
+	Long termId;
 	@NotNull
 	private int rankValue;
 	@NotNull
@@ -29,8 +29,8 @@ public class TermRank {
 
 	}
 
-	public TermRank(String term, int rankValue, Long documentCollectionId) {
-		this.term = term;
+	public TermRank(Long termId, int rankValue, Long documentCollectionId) {
+		this.termId = termId;
 		this.rankValue = rankValue;
 		this.documentCollectionId = documentCollectionId;
 	}

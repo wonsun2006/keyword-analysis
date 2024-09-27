@@ -21,15 +21,12 @@ public class TermRankRepositoryTest extends BasicRepositoryTest<TermRank> {
 
 	@Override
 	protected TermRank createMockData() {
-		String term = "Lorem";
-		int rankValue = 1;
-		Long documentCollectionId = 1L;
-		return new TermRank(term, rankValue, documentCollectionId);
+		return new TermRank(1L, 1, 1L);
 	}
 
 	@Override
 	protected void assertDataEquals(TermRank expected, TermRank actual) {
-		assertEquals(expected.getTerm(), actual.getTerm());
+		assertEquals(expected.getTermId(), actual.getTermId());
 		assertEquals(expected.getRankValue(), actual.getRankValue());
 		assertEquals(expected.getDocumentCollectionId(), actual.getDocumentCollectionId());
 	}
