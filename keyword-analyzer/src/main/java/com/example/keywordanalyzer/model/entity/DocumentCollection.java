@@ -3,7 +3,6 @@ package com.example.keywordanalyzer.model.entity;
 import java.time.LocalDateTime;
 
 import jakarta.annotation.Nullable;
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,11 +13,10 @@ import lombok.Setter;
 
 @Getter
 @Entity
-public class WordCollection {
+public class DocumentCollection {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "collection_id")
-	private Long id;
+	private Long documentCollectionId;
 	@Setter
 	@NotNull
 	private int collectStatus;
@@ -32,22 +30,22 @@ public class WordCollection {
 	private LocalDateTime endTime;
 	@Setter
 	@NotNull
-	private int totalDocCount;
+	private int totalDocumentCount;
 	@Setter
 	@NotNull
 	private String message;
 
-	protected WordCollection() {
+	protected DocumentCollection() {
 	}
 
-	public WordCollection(int collectStatus, int analysisStatus, LocalDateTime startTime,
+	public DocumentCollection(int collectStatus, int analysisStatus, LocalDateTime startTime,
 		@Nullable LocalDateTime endTime,
-		int totalDocCount, String message) {
+		int totalDocumentCount, String message) {
 		this.collectStatus = collectStatus;
 		this.analysisStatus = analysisStatus;
 		this.startTime = startTime;
 		this.endTime = endTime;
-		this.totalDocCount = totalDocCount;
+		this.totalDocumentCount = totalDocumentCount;
 		this.message = message;
 	}
 }

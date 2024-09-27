@@ -7,8 +7,10 @@ import java.util.Optional;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.transaction.annotation.Transactional;
 
 @SpringBootTest
+@Transactional
 public abstract class BasicRepositoryTest<T> {
 	protected JpaRepository<T, Long> repository;
 
@@ -65,7 +67,7 @@ public abstract class BasicRepositoryTest<T> {
 		repository.deleteById(getId(savedEntity));
 
 		// Assert
-		Optional<T> foundPost = repository.findById(getId(savedEntity));
-		assertFalse(foundPost.isPresent());
+		Optional<T> foundEntity = repository.findById(getId(savedEntity));
+		assertFalse(foundEntity.isPresent());
 	}
 }
