@@ -13,10 +13,10 @@ import lombok.Getter;
 
 @Getter
 @Entity
-public class Post {
+public class Document {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "post_id")
+	@Column(name = "document_id")
 	private Long id;
 	@NotNull
 	@Column(columnDefinition = "TEXT")
@@ -24,26 +24,26 @@ public class Post {
 	@NotNull
 	private LocalDateTime createdAt;
 	@NotNull
-	@JoinColumn(name = "collection_id")
-	private Long collectionId;
+	@JoinColumn(name = "document_collection_id")
+	private Long documentCollectionId;
 	@NotNull
 	private Long apiId;
 
-	protected Post() {
+	protected Document() {
 	}
 
-	public Post(Long id, String content, LocalDateTime createdAt, Long collectionId, Long apiId) {
+	public Document(Long id, String content, LocalDateTime createdAt, Long documentCollectionId, Long apiId) {
 		this.id = id;
 		this.content = content;
 		this.createdAt = createdAt;
-		this.collectionId = collectionId;
+		this.documentCollectionId = documentCollectionId;
 		this.apiId = apiId;
 	}
 
-	public Post(String content, LocalDateTime createdAt, Long collectionId, Long apiId) {
+	public Document(String content, LocalDateTime createdAt, Long documentCollectionId, Long apiId) {
 		this.content = content;
 		this.createdAt = createdAt;
-		this.collectionId = collectionId;
+		this.documentCollectionId = documentCollectionId;
 		this.apiId = apiId;
 	}
 }

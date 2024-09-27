@@ -32,7 +32,7 @@ public class DocumentCountRepositoryTest extends BasicRepositoryTest<DocumentCou
 	protected void assertDataEquals(DocumentCount expected, DocumentCount actual) {
 		assertEquals(expected.getTerm(), actual.getTerm());
 		assertEquals(expected.getDocumentCount(), actual.getDocumentCount());
-		assertEquals(expected.getCollectionId(), actual.getCollectionId());
+		assertEquals(expected.getDocumentCollectionId(), actual.getDocumentCollectionId());
 	}
 
 	@Test

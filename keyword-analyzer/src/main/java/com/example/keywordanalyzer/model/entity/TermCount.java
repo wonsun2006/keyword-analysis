@@ -27,15 +27,15 @@ public class TermCount {
 	@ColumnDefault("0")
 	private int termCount;
 	@NotNull
-	@JoinColumn(name = "post_id")
-	private Long postId;
+	@JoinColumn(name = "document_id")
+	private Long documentId;
 
 	protected TermCount() {
 	}
 
-	public TermCount(String term, int termCount, Long postId) {
+	public TermCount(String term, int termCount, Long documentId) {
 		this.term = term;
 		this.termCount = termCount;
-		this.postId = postId;
+		this.documentId = documentId;
 	}
 }

@@ -25,14 +25,14 @@ public class TfidfResultRepositoryTest extends BasicRepositoryTest<TfidfResult> 
 		double tfidfValue = 0.5;
 		double tfValue = 0.3;
 		double idfValue = 0.7;
-		Long postId = 1L;
-		return new TfidfResult(term, tfidfValue, tfValue, idfValue, postId);
+		Long documentId = 1L;
+		return new TfidfResult(term, tfidfValue, tfValue, idfValue, documentId);
 	}
 
 	@Override
 	protected void assertDataEquals(TfidfResult expected, TfidfResult actual) {
 		assertEquals(expected.getTerm(), actual.getTerm());
 		assertEquals(expected.getTfidfValue(), actual.getTfidfValue());
-		assertEquals(expected.getPostId(), actual.getPostId());
+		assertEquals(expected.getDocumentId(), actual.getDocumentId());
 	}
 }

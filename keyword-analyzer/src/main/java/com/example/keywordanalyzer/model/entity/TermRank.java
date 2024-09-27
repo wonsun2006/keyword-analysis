@@ -22,16 +22,16 @@ public class TermRank {
 	@NotNull
 	private int rankValue;
 	@NotNull
-	@JoinColumn(name = "collection_id")
-	private Long collectionId;
+	@JoinColumn(name = "document_collection_id")
+	private Long documentCollectionId;
 
 	protected TermRank() {
 
 	}
 
-	public TermRank(String term, int rankValue, Long collectionId) {
+	public TermRank(String term, int rankValue, Long documentCollectionId) {
 		this.term = term;
 		this.rankValue = rankValue;
-		this.collectionId = collectionId;
+		this.documentCollectionId = documentCollectionId;
 	}
 }

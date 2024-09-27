@@ -1,4 +1,4 @@
-CREATE TABLE `post`
+CREATE TABLE `document`
 (
     `post_id`       BIGINT   NOT NULL PRIMARY KEY AUTO_INCREMENT,
     `content`       TEXT     NOT NULL,

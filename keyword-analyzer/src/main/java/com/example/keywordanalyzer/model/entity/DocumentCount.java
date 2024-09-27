@@ -27,15 +27,15 @@ public class DocumentCount {
 	@ColumnDefault("0")
 	private int documentCount;
 	@NotNull
-	@JoinColumn(name = "collection_id")
-	private Long collectionId;
+	@JoinColumn(name = "document_collection_id")
+	private Long documentCollectionId;
 
 	protected DocumentCount() {
 	}
 
-	public DocumentCount(String term, int documentCount, Long postId) {
+	public DocumentCount(String term, int documentCount, Long documentCollectionId) {
 		this.term = term;
 		this.documentCount = documentCount;
-		this.collectionId = postId;
+		this.documentCollectionId = documentCollectionId;
 	}
 }

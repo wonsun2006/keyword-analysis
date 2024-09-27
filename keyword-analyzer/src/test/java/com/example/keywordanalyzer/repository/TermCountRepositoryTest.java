@@ -24,15 +24,15 @@ public class TermCountRepositoryTest extends BasicRepositoryTest<TermCount> {
 	protected TermCount createMockData() {
 		String term = "Lorem";
 		int count = 1;
-		Long postId = 1L;
-		return new TermCount(term, count, postId);
+		Long documentId = 1L;
+		return new TermCount(term, count, documentId);
 	}
 
 	@Override
 	protected void assertDataEquals(TermCount expected, TermCount actual) {
 		assertEquals(expected.getTerm(), actual.getTerm());
 		assertEquals(expected.getTermCount(), actual.getTermCount());
-		assertEquals(expected.getPostId(), actual.getPostId());
+		assertEquals(expected.getDocumentId(), actual.getDocumentId());
 	}
 
 	@Test

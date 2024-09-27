@@ -9,5 +9,5 @@ import com.example.keywordanalyzer.model.entity.TermCount;
 
 @Repository
 public interface TermCountRepository extends JpaRepository<TermCount, Long> {
-	Optional<TermCount> findByPostIdAndTerm(long postId, String term);
+	Optional<TermCount> findByDocumentIdAndTerm(long documentId, String term);
 }

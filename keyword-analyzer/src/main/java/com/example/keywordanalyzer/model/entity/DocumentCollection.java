@@ -14,10 +14,10 @@ import lombok.Setter;
 
 @Getter
 @Entity
-public class WordCollection {
+public class DocumentCollection {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "collection_id")
+	@Column(name = "document_collection_id")
 	private Long id;
 	@Setter
 	@NotNull
@@ -32,22 +32,22 @@ public class WordCollection {
 	private LocalDateTime endTime;
 	@Setter
 	@NotNull
-	private int totalDocCount;
+	private int totalDocumentCount;
 	@Setter
 	@NotNull
 	private String message;
 
-	protected WordCollection() {
+	protected DocumentCollection() {
 	}
 
-	public WordCollection(int collectStatus, int analysisStatus, LocalDateTime startTime,
+	public DocumentCollection(int collectStatus, int analysisStatus, LocalDateTime startTime,
 		@Nullable LocalDateTime endTime,
-		int totalDocCount, String message) {
+		int totalDocumentCount, String message) {
 		this.collectStatus = collectStatus;
 		this.analysisStatus = analysisStatus;
 		this.startTime = startTime;
 		this.endTime = endTime;
-		this.totalDocCount = totalDocCount;
+		this.totalDocumentCount = totalDocumentCount;
 		this.message = message;
 	}
 }

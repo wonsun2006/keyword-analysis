@@ -13,24 +13,24 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import com.example.keywordanalyzer.model.entity.Document;
+import com.example.keywordanalyzer.model.entity.DocumentCollection;
 import com.example.keywordanalyzer.model.entity.DocumentCount;
-import com.example.keywordanalyzer.model.entity.Post;
 import com.example.keywordanalyzer.model.entity.TermCount;
-import com.example.keywordanalyzer.model.entity.WordCollection;
+import com.example.keywordanalyzer.repository.DocumentCollectionRepository;
 import com.example.keywordanalyzer.repository.DocumentCountRepository;
 import com.example.keywordanalyzer.repository.TermCountRepository;
-import com.example.keywordanalyzer.repository.WordCollectionRepository;
 import com.example.keywordanalyzer.util.NlpUtil;
 import com.example.keywordanalyzer.util.TestUtil;
 
 @ExtendWith(MockitoExtension.class)
 public class TermCountServiceTest {
 	@Mock
-	private WordCollection wordCollection;
+	private DocumentCollection documentCollection;
 	@Mock
 	private TermCountRepository termCountRepository;
 	@Mock
-	private WordCollectionRepository wordCollectionRepository;
+	private DocumentCollectionRepository documentCollectionRepository;
 	@Mock
 	private DocumentCountRepository documentCountRepository;
 
@@ -39,21 +39,22 @@ public class TermCountServiceTest {
 
 	@BeforeEach
 	void setUp() {
-		Mockito.when(wordCollection.getId()).thenReturn(1L);
-		Mockito.when(wordCollectionRepository.existsById(wordCollection.getId())).thenReturn(true);
+		Mockito.when(documentCollection.getId()).thenReturn(1L);
+		Mockito.when(documentCollectionRepository.existsById(documentCollection.getId())).thenReturn(true);
 	}
 
 	@Test
 	void saveTermCountWithSinglePost() {
 		// Arrange
-		Post post = new Post(1L, "Hello World! This test is test post.", LocalDateTime.of(2024, 1, 1, 0, 0, 0),
-			wordCollection.getId(), 1L);
+		Document document = new Document(1L, "Hello World! This test is test post.",
+			LocalDateTime.of(2024, 1, 1, 0, 0, 0),
+			documentCollection.getId(), 1L);
 
 		// Act
-		service.saveTermCount(post);
+		service.saveTermCount(document);
 
 		// Assert
-		HashMap<String, Integer> actualCounts = NlpUtil.extractNoun(post.getContent());
+		HashMap<String, Integer> actualCounts = NlpUtil.extractNoun(document.getContent());
 		HashMap<String, Integer> expectedCounts = new HashMap<>();
 		expectedCounts.put("World", 1);
 		expectedCounts.put("test", 2);

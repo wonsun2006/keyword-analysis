@@ -11,8 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.example.keywordanalyzer.model.entity.Document;
 import com.example.keywordanalyzer.model.entity.DocumentCount;
-import com.example.keywordanalyzer.model.entity.Post;
 import com.example.keywordanalyzer.model.entity.TermCount;
 import com.example.keywordanalyzer.repository.DocumentCountRepository;
 import com.example.keywordanalyzer.repository.TermCountRepository;
@@ -38,11 +38,12 @@ public class TermCountServiceIntegrationTest {
 		// Arrange
 		long collectionId = 1L;
 		long postId = 1L;
-		Post post = new Post(postId, "Hello World! This test is post test.", LocalDateTime.of(2024, 1, 1, 0, 0, 0),
+		Document document = new Document(postId, "Hello World! This test is post test.",
+			LocalDateTime.of(2024, 1, 1, 0, 0, 0),
 			collectionId, 1L);
 
 		// Act
-		service.saveTermCount(post);
+		service.saveTermCount(document);
 
 		// Assert
 		HashMap<String, Integer> termCountTuples = new HashMap<>();
@@ -52,7 +53,7 @@ public class TermCountServiceIntegrationTest {
 
 		for (String term : termCountTuples.keySet()) {
 			// TermCount 생성 확인
-			Optional<TermCount> termCountOptional = termCountRepository.findByPostIdAndTerm(postId, term);
+			Optional<TermCount> termCountOptional = termCountRepository.findByDocumentIdAndTerm(postId, term);
 			assertTrue(termCountOptional.isPresent());
 			TermCount termCount = termCountOptional.orElseThrow();
 			int expectedTermCount = termCountTuples.get(term);
@@ -60,7 +61,7 @@ public class TermCountServiceIntegrationTest {
 			assertEquals(expectedTermCount, actualTermCount);
 
 			// DocumentCount 업데이트 확인
-			Optional<DocumentCount> documentCountOptional = documentCountRepository.findByCollectionIdAndTerm(
+			Optional<DocumentCount> documentCountOptional = documentCountRepository.findByDocumentCollectionIdAndTerm(
 				collectionId, term);
 			assertTrue(documentCountOptional.isPresent());
 			DocumentCount documentCount = documentCountOptional.orElseThrow();
