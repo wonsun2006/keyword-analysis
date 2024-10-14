@@ -39,18 +39,9 @@ public class DocumentCollectionService {
 		return idfResultMap;
 	}
 
-	List<TfidfResult> analyzeDocumentCollection(Long documentCollectionId) {
+	List<TfidfResult> saveTfidfResultWithTermCountList(List<TermCount> termCountList, Map<Long, Double> idfResultMap,
+		Long documentCollectionId) {
 		List<TfidfResult> tfidfResultList = new ArrayList<>();
-
-		DocumentCollection documentCollection = documentCollectionRepository.findById(documentCollectionId).orElseThrow(
-			() -> new DocumentCollectionNotFoundException(documentCollectionId)
-		);
-		List<DocumentCount> documentCountList = documentCountRepository.findAllByDocumentCollectionId(
-			documentCollectionId);
-		Map<Long, Double> idfResultMap = calculateIdfResultMap(documentCollection.getTotalDocumentCount(),
-			documentCountList);
-
-		List<TermCount> termCountList = termCountRepository.findAllByDocumentCollectionId(documentCollectionId);
 		for (TermCount termCount : termCountList) {
 			if (!idfResultMap.containsKey(termCount.getTermId())) {
 				throw new RuntimeException(
@@ -64,6 +55,22 @@ public class DocumentCollectionService {
 			TfidfResult ret = tfidfResultRepository.save(tfidfResult);
 			tfidfResultList.add(ret);
 		}
+		return tfidfResultList;
+	}
+
+	List<TfidfResult> analyzeDocumentCollection(Long documentCollectionId) {
+		DocumentCollection documentCollection = documentCollectionRepository.findById(documentCollectionId).orElseThrow(
+			() -> new DocumentCollectionNotFoundException(documentCollectionId)
+		);
+		List<DocumentCount> documentCountList = documentCountRepository.findAllByDocumentCollectionId(
+			documentCollectionId);
+		Map<Long, Double> idfResultMap = calculateIdfResultMap(documentCollection.getTotalDocumentCount(),
+			documentCountList);
+
+		List<TermCount> termCountList = termCountRepository.findAllByDocumentCollectionId(documentCollectionId);
+
+		List<TfidfResult> tfidfResultList = saveTfidfResultWithTermCountList(termCountList, idfResultMap,
+			documentCollectionId);
 
 		return tfidfResultList;
 	}
