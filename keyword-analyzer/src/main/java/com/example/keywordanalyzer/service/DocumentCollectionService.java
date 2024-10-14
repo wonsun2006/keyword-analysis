@@ -8,6 +8,7 @@ import java.util.Map;
 import org.springframework.stereotype.Service;
 
 import com.example.keywordanalyzer.exception.DocumentCollectionNotFoundException;
+import com.example.keywordanalyzer.exception.TermIdNotFoundInIdfResult;
 import com.example.keywordanalyzer.model.entity.DocumentCollection;
 import com.example.keywordanalyzer.model.entity.DocumentCount;
 import com.example.keywordanalyzer.model.entity.TermCount;
@@ -44,8 +45,7 @@ public class DocumentCollectionService {
 		List<TfidfResult> tfidfResultList = new ArrayList<>();
 		for (TermCount termCount : termCountList) {
 			if (!idfResultMap.containsKey(termCount.getTermId())) {
-				throw new RuntimeException(
-					"No such term ID with " + termCount.getTermId() + " exists in IDF result map.");
+				throw new TermIdNotFoundInIdfResult(termCount.getTermId());
 			}
 			double tfValue = NlpUtil.calculateTermFrequency(termCount.getTermCount());
 			double idfValue = idfResultMap.get(termCount.getTermId());
