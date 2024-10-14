@@ -3,7 +3,7 @@ package com.example.keywordanalyzer.util;
 import java.util.Map;
 
 public class TestUtil {
-	public static <K, V> boolean assertMapEquals(Map<K, V> expected, Map<K, V> actual) {
+	public static <K, V> boolean mapEntriesEquals(Map<K, V> expected, Map<K, V> actual) {
 		if (expected.size() != actual.size()) {
 			return false;
 		}

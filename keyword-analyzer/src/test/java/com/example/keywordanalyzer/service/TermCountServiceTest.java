@@ -1,5 +1,6 @@
 package com.example.keywordanalyzer.service;
 
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 import java.time.LocalDateTime;
@@ -71,7 +72,7 @@ public class TermCountServiceTest {
 		expectedCounts.put("post", 1);
 		int totalTermCount = expectedCounts.size();
 
-		TestUtil.assertMapEquals(expectedCounts, actualCounts);
+		assertTrue(TestUtil.mapEntriesEquals(expectedCounts, actualCounts));
 		verify(termCountRepository, times(totalTermCount)).save(any(TermCount.class));
 		verify(documentCountRepository, times(totalTermCount)).save(any(DocumentCount.class));
 	}
