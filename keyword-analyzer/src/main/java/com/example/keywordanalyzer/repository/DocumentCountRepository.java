@@ -1,5 +1,6 @@
 package com.example.keywordanalyzer.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -10,4 +11,6 @@ import com.example.keywordanalyzer.model.entity.DocumentCount;
 @Repository
 public interface DocumentCountRepository extends JpaRepository<DocumentCount, Long> {
 	Optional<DocumentCount> findByDocumentCollectionIdAndTermId(Long documentCollectionId, Long termId);
+
+	List<DocumentCount> findAllByDocumentCollectionId(Long documentCollectionId);
 }

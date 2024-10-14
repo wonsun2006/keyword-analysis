@@ -6,6 +6,8 @@ import java.util.HashMap;
 
 import org.springframework.core.io.ClassPathResource;
 
+import com.example.keywordanalyzer.exception.IllegalNegativeInputException;
+
 import opennlp.tools.postag.POSModel;
 import opennlp.tools.postag.POSTaggerME;
 import opennlp.tools.tokenize.SimpleTokenizer;
@@ -34,5 +36,45 @@ public class NlpUtil {
 		}
 
 		return wordCounts;
+	}
+
+	public static double calculateTermFrequency(int termCountInDocument) {
+		if (termCountInDocument < 0) {
+			throw new IllegalNegativeInputException("termCountInDocument");
+		}
+
+		double termFrequency;
+		if (termCountInDocument > 0) {
+			termFrequency = 1 + Math.log10(termCountInDocument);
+		} else {
+			termFrequency = 0;
+		}
+		return termFrequency;
+	}
+
+	public static double calculateInverseDocumentFrequency(int totalDocumentCount, int documentCountContainingTerm) {
+		if (totalDocumentCount < 0) {
+			throw new IllegalNegativeInputException("totalDocumentCount");
+		}
+		if (documentCountContainingTerm < 0) {
+			throw new IllegalNegativeInputException("documentCountContainingTerm");
+		}
+		if (documentCountContainingTerm > totalDocumentCount) {
+			throw new IllegalArgumentException(
+				"Document count that contains the term can not be bigger than total document count");
+		}
+
+		return Math.log10((double)totalDocumentCount / documentCountContainingTerm);
+	}
+
+	public static double calculateTfidf(double tfValue, double idfValue) {
+		if (tfValue < 0) {
+			throw new IllegalNegativeInputException("tfValue");
+		}
+		if (idfValue < 0) {
+			throw new IllegalNegativeInputException("idfValue");
+		}
+
+		return tfValue * idfValue;
 	}
 }

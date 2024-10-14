@@ -48,4 +48,15 @@ public class DocumentCollection {
 		this.totalDocumentCount = totalDocumentCount;
 		this.message = message;
 	}
+
+	public DocumentCollection(long documentCollectionId, int collectStatus, int analysisStatus, LocalDateTime startTime,
+		@Nullable LocalDateTime endTime, int totalDocumentCount, String message) {
+		this.documentCollectionId = documentCollectionId;
+		this.collectStatus = collectStatus;
+		this.analysisStatus = analysisStatus;
+		this.startTime = startTime;
+		this.endTime = endTime;
+		this.totalDocumentCount = totalDocumentCount;
+		this.message = message;
+	}
 }
